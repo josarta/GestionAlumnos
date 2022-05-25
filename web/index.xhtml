@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Gestion Alumnos</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></link>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.css"></link>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <h:form>
+                        <div class="mb-3">
+                            <label class="form-label">Tipo de documento</label>
+                            <h:inputText value="#{alumnosSession.alIn.tipodocumento}" class="form-control" id="td_id"/>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Documento</label>
+                            <h:inputText  value="#{alumnosSession.alIn.documento}" class="form-control" id="doc_id"/>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nombres</label>
+                            <h:inputText value="#{alumnosSession.alIn.nombres}" class="form-control" id="nom_id"/>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Apellidos</label>
+                            <h:inputText value="#{alumnosSession.alIn.apellidos}" class="form-control" id="ape_id"/>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Observaciones</label>
+                            <h:inputText value="#{alumnosSession.alIn.observaciones}" class="form-control" id="obser_id"/>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label class="form-label">Nota 1</label>
+                                <h:selectOneMenu value="#{alumnosSession.n1}" class="form-select">
+                                    <f:selectItem itemValue="1" itemLabel="1" />
+                                    <f:selectItem itemValue="2" itemLabel="2" />
+                                    <f:selectItem itemValue="3" itemLabel="3" />
+                                    <f:selectItem itemValue="4" itemLabel="4" />
+                                    <f:selectItem itemValue="5" itemLabel="5" />
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="col">
+                                <label class="form-label">Nota 2</label>
+                                <h:selectOneMenu  value="#{alumnosSession.n2}" class="form-select">
+                                    <f:selectItem itemValue="1" itemLabel="1" />
+                                    <f:selectItem itemValue="2" itemLabel="2" />
+                                    <f:selectItem itemValue="3" itemLabel="3" />
+                                    <f:selectItem itemValue="4" itemLabel="4" />
+                                    <f:selectItem itemValue="5" itemLabel="5" />
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="col">
+                                <label class="form-label">Nota 3</label>
+                                <h:selectOneMenu value="#{alumnosSession.n3}" class="form-select">
+                                    <f:selectItem itemValue="1" itemLabel="1" />
+                                    <f:selectItem itemValue="2" itemLabel="2" />
+                                    <f:selectItem itemValue="3" itemLabel="3" />
+                                    <f:selectItem itemValue="4" itemLabel="4" />
+                                    <f:selectItem itemValue="5" itemLabel="5" />
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label class="form-label">Nota 4</label>
+                                <h:selectOneMenu value="#{alumnosSession.n4}" class="form-select">
+                                    <f:selectItem itemValue="1" itemLabel="1" />
+                                    <f:selectItem itemValue="2" itemLabel="2" />
+                                    <f:selectItem itemValue="3" itemLabel="3" />
+                                    <f:selectItem itemValue="4" itemLabel="4" />
+                                    <f:selectItem itemValue="5" itemLabel="5" />
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="col">
+                                <label class="form-label">Nota 5</label>
+                                <h:selectOneMenu  value="#{alumnosSession.n5}" class="form-select">
+                                    <f:selectItem itemValue="1" itemLabel="1" />
+                                    <f:selectItem itemValue="2" itemLabel="2" />
+                                    <f:selectItem itemValue="3" itemLabel="3" />
+                                    <f:selectItem itemValue="4" itemLabel="4" />
+                                    <f:selectItem itemValue="5" itemLabel="5" />
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="col cc">
+                                <h:commandButton  action="#{alumnosSession.guardarAlumno()}" class="btn btn-outline-primary js--btn-100" value="Enviar" />
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+                <div class="col-9">
+                    <h:form>
+                        <table id="table_id" class="display">
+                            <thead>
+                                <tr>
+                                    <th>Tipo Documento</th>
+                                    <th>Documento</th>
+                                    <th>Nombres</th>
+                                    <th>Apellidos</th>
+                                    <th>Observaciones</th>
+                                    <th>Nota 1</th>
+                                    <th>Nota 2</th>
+                                    <th>Nota 3</th>
+                                    <th>Nota 4</th>
+                                    <th>Nota 5</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <c:forEach items="#{alumnosSession.listaAlumnos}" var="al" varStatus="pos">
+                                    <tr>
+                                        <td>#{al.tipodocumento}</td>
+                                        <td>#{al.documento}</td>
+                                        <td>#{al.nombres}</td>
+                                        <td>#{al.apellidos}</td>
+                                        <td>#{al.observaciones}</td>
+                                        <td>#{al.obtenNota(0)}</td>
+                                        <td>#{al.notas[1]}</td>
+                                        <td>#{al.obtenNota(2)}</td>
+                                        <td>#{al.obtenNota(3)}</td>
+                                        <td>#{al.obtenNota(4)}</td>
+                                        <td>
+                                            <h:commandButton action="#{alumnosSession.removerAlumno(pos.index)}" class="btn btn-outline-danger" value="R" />
+                                            <h:commandButton action="#{alumnosSession.calcularMedia(pos.index)}" class="btn btn-outline-success" value="M" />
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+
+
+                            </tbody>
+                        </table>
+                    </h:form>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#table_id').DataTable({
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                    }
+                });
+            });
+
+            function ingresadoCorrecto() {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Creado con exito !!!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+
+            function removerCorrecto() {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Removido correctamente !!!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+
+            function promedio(nombre, valor) {
+                Swal.fire({
+                    title: 'Alumno : '+ nombre + " Promedio : " +valor,
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                })
+
+            }
+
+
+        </script>
+    </h:body>
+</html>
+
